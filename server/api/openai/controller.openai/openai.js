@@ -26,6 +26,8 @@ const readSendedContent = async(req,res) => {
 
         const sendImgUrl = command.imgURL
         console.log(sendImgUrl)
+
+        
         
         return response(res,200, sendImgUrl)
     }catch(err){

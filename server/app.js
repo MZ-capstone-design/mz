@@ -1,12 +1,13 @@
 require('dotenv').config()
 
-const express = require("express")
+const express = require("express") 
 const cors = require("cors")
 const session = require('express-session')
 // 라우터 설정
 const openaiRouter = require('./api/openai/route.openai')
 const loginRouter = require('./api/user/login/route.login')
 const registerRouter = require('./api/user/register/route.register')
+const crawlRouter = require('./api/crawl/route.crawl')
 
 const port = 8080;
 
@@ -38,6 +39,7 @@ sequelize.sync({ force: false })
 app.use("/openai", openaiRouter)
 app.use("/user", loginRouter)
 app.use("/register", registerRouter); 
+app.use("/crawl", crawlRouter)
 
 
 
