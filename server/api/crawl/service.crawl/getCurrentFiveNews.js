@@ -1,9 +1,10 @@
 const axios = require('axios');
+require('dotenv').config();
 
 module.exports = async () => {
     try{
-        const clientID = 'RdxMEqve55yyAU84_HvX';
-        const clientSecret = 'VPZX6tQzeY';
+        const clientID = process.env.NAVER_CLIENT_ID;
+        const clientSecret = process.env.NAVER_CLIENT_SECRET;
       
         const query = '몽타주';
         
@@ -15,6 +16,11 @@ module.exports = async () => {
                 'X-Naver-Client-Secret': clientSecret,
             },
         });
+
+        console.log(response.data);
+
+        console.log(response);
+
         const articles = response.data.items;
         return articles;
 
