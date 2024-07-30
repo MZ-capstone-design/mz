@@ -10,6 +10,12 @@ const createUser = async (req, res) => {
     console.log('회원가입 라우팅 확인')
     try {
 
+        const existedUser = await findUserByEmail(email);
+
+        if(existedUser) {
+            return response(res, 400, '가입된 유저가 존재하여 회원가입 할 수 없습니다.');
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10); // Password hashing
 
         const user = await User.create({
@@ -18,17 +24,6 @@ const createUser = async (req, res) => {
             password: hashedPassword
         });
 
-
-        /*
-        console.log(user)
-
-        const test = await User.findOne({
-            where : {
-                name : user.name
-            },
-            attributes : ['id','name']
-        })
-        */
         return response(res, 200, user);
     } catch (err) {
         console.error(err);
