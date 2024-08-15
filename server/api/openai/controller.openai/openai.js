@@ -60,6 +60,6 @@ const historyCommand = async(req,res) => {
 }
 
 module.exports = {
-    readSendedContent ,
+    readSendedContent,
     historyCommand  
 }
